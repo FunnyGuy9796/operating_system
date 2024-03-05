@@ -1,7 +1,7 @@
 .set ALIGN,    1<<0
 .set MEMINFO,  1<<1
 .set FLAGS,    ALIGN | MEMINFO
-.set MAGIC,    0x1BADB002
+.set MAGIC,    0xe85250d6
 .set CHECKSUM, -(MAGIC + FLAGS)
 
 .section .multiboot
@@ -21,6 +21,9 @@ stack_top:
 .type _start, @function
 _start:
 	mov $stack_top, %esp
+
+	pushl %ebx
+	pushl %eax
 
 	call main
 
